@@ -6,7 +6,7 @@ class Home extends StatelessWidget {
     return Center(
       child: Container(
           alignment: Alignment.center,
-          padding: EdgeInsets.only(top:40.0,left:10.0),
+          padding: EdgeInsets.only(top: 20.0, left: 10.0),
           color: Colors.deepOrangeAccent,
           child: Column(
             children: <Widget>[
@@ -21,8 +21,7 @@ class Home extends StatelessWidget {
                           decoration: TextDecoration.none,
                           fontFamily: 'Oxygen',
                           fontWeight: FontWeight.normal,
-                          color: Colors.white
-                          ),
+                          color: Colors.white),
                     ),
                   ),
                   Expanded(
@@ -34,12 +33,10 @@ class Home extends StatelessWidget {
                         decoration: TextDecoration.none,
                         fontFamily: 'Oxygen',
                         fontWeight: FontWeight.w300,
-                        color: Colors.white
-                        ),
+                        color: Colors.white),
                   ))
                 ],
               ),
-
               Row(
                 children: <Widget>[
                   Expanded(
@@ -51,8 +48,7 @@ class Home extends StatelessWidget {
                           decoration: TextDecoration.none,
                           fontFamily: 'Oxygen',
                           fontWeight: FontWeight.normal,
-                          color: Colors.white
-                          ),
+                          color: Colors.white),
                     ),
                   ),
                   Expanded(
@@ -64,12 +60,10 @@ class Home extends StatelessWidget {
                         decoration: TextDecoration.none,
                         fontFamily: 'Oxygen',
                         fontWeight: FontWeight.w300,
-                        color: Colors.white
-                        ),
+                        color: Colors.white),
                   ))
                 ],
               ),
-
               Row(
                 children: <Widget>[
                   Expanded(
@@ -81,8 +75,7 @@ class Home extends StatelessWidget {
                           decoration: TextDecoration.none,
                           fontFamily: 'Oxygen',
                           fontWeight: FontWeight.normal,
-                          color: Colors.white
-                          ),
+                          color: Colors.white),
                     ),
                   ),
                   Expanded(
@@ -94,12 +87,12 @@ class Home extends StatelessWidget {
                         decoration: TextDecoration.none,
                         fontFamily: 'Oxygen',
                         fontWeight: FontWeight.w300,
-                        color: Colors.white
-                        ),
+                        color: Colors.white),
                   ))
                 ],
               ),
               PizzaImagewidget(),
+              OrderButton(),
             ],
           )),
     );
@@ -110,13 +103,38 @@ class PizzaImagewidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AssetImage pizzaAsset = AssetImage('images/pizza.jpeg');
-    Image image = Image(image: pizzaAsset,
-    width: 400.0,
-    height: 400.0
+    Image image = Image(image: pizzaAsset, width: 300.0, height: 300.0);
+    return Container(
+      padding: EdgeInsets.only(top: 20.0, bottom: 10.0),
+      child: image,
     );
-    return Container(child: image,);
   }
-
 }
 
-void main() {}
+class OrderButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    var button = Container(
+      margin: EdgeInsets.only(top: 50.0),
+      child: RaisedButton(
+        child: Text('Finalizar pedido!'),
+        color: Colors.lightGreen,
+        elevation: 5.0,
+        onPressed: () {
+          order(context);
+        },
+      ),
+    );
+    return button;
+  }
+
+  void order(BuildContext context) {
+    var alert = AlertDialog(
+      title: Text("Pedido Completo"),
+      content: Text("Obrigado pelo seu pedido"),
+    );
+    showDialog(
+        context: context,
+        builder: (BuildContext context) => alert);
+  }
+}
